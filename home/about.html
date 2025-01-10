@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VETA</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="home.css">
+    
+</head>
+<body id="body">
+    <!-- Header with Menu -->
+    <div class="header">
+        <div class="menu-icon" onclick="openLeftMenu()"><i class="fas fa-bars"></i></div>
+        <img src="assets/images/logo.png" alt="Logo" class="logo">
+        <div class="title"><p id="fullNameDisplay"> Loading...</p></div>
+        <div class="header-icons">
+            <span class="notification"><i class="fas fa-bell"></i></span>
+            <span class="search"><i class="fas fa-search"></i></span>
+            <span class="three-dots" onclick="openRightMenu()"><i class="fas fa-ellipsis-v"></i></span>
+        </div>
+    </div>
+    
+    <!-- Search Popup -->
+    <div class="popup" id="searchPopup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closeSearchPopup()">&#10005;</span>
+            <h2>Search</h2>
+            <input 
+                type="text" 
+                placeholder="Search here..." 
+                id="searchInput" 
+                onkeyup="fetchSearchResults()" 
+            />
+            <ul id="searchResults">
+                <!-- Search রেজাল্ট এখানে ডাইনামিক্যালি দেখানো হবে -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Notification Popup -->
+    <div class="popup" id="notificationPopup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closeNotificationPopup()">&#10005;</span>
+            <h2>Notifications</h2>
+            <ul id="notificationList">
+                <li><a href="#" class="notification-link">No new notifications.</a></li>
+                <li><a href="#" class="notification-link">No new notifications.</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Left Sidebar Menu -->
+    <div class="sidebar left-sidebar" id="leftMenu">
+        <button class="close-btn" onclick="closeLeftMenu()">&#10005;</button>
+        <ul>
+            <li><span class="icon"><i class="fas fa-home"></i></span> Home</li>
+            <li><span class="icon"><i class="fas fa-user"></i></span> About</li>
+            <li><span class="icon"><i class="fas fa-cogs"></i></span> Services</li>
+            <li><span class="icon"><i class="fas fa-phone-alt"></i></span> Contact</li>
+        </ul>
+    </div>
+
+    <!-- Right Sidebar Menu -->
+    <div class="sidebar right-sidebar" id="rightMenu">
+        <button class="close-btn" onclick="closeRightMenu()">&#10005;</button>
+        <ul>
+            <li onclick="openProfilePopup()"><span class="icon"><i class="fas fa-user"></i></span> Profile</li>
+            <li onclick="openSettingsPopup()"><span class="icon"><i class="fas fa-cogs"></i></span> Settings</li>
+            <li><span class="icon"><i class="fas fa-bell"></i></span> Notifications</li>
+            <li onclick="logoutUser()"><span class="icon"><i class="fas fa-sign-out-alt"></i></span> Logout</li>
+        </ul>
+    </div>
+
+    <!-- Profile Popup -->
+    <div class="popup" id="profilePopup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closeProfilePopup()">&#10005;</span>
+            <h1><p class="fullNameDisplay"> Loading...</p></h1>
+            <div class="logo-container" id="logoContainer">
+                <img src="assets/images/logo.png" alt="Profile Logo" id="profileLogo">
+            </div>
+            <div class="user-info">
+                <p id="userUIDDisplay">UID: Loading...</p>
+                <p id="userEmail">Email: Loading...</p>
+                <p id="phoneNumberDisplay">Phone Number: Loading...</p>
+            </div>
+            <button class="update-form-btn" onclick="openUpdateForm()">Open Update Form</button>
+        </div>
+    </div>
+
+    <!-- Settings Popup for Dark/Light Mode -->
+    <div class="popup" id="settingsPopup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closeSettingsPopup()">&#10005;</span>
+            <h2>Settings</h2>
+            <div class="theme-toggle">
+                <button id="themeToggle" onclick="toggleTheme()">Switch to Dark Mode</button>
+            </div>
+        </div>
+    </div>
+
+    
+    
+    <!-- এখানে iframe ব্যবহার করা হয়েছে -->
+    <iframe src="about/index.html" width="100%" height="1000px" frameborder="0"></iframe>
+    
+    
+    
+    <!-- JavaScript -->
+    <script src="style.js"></script>
+    <script type="module" src="home.js"></script>
+    <script>
+        // Dark mode toggle logic
+        let isDarkMode = false;
+
+        function toggleTheme() {
+            const body = document.getElementById("body");
+            const button = document.getElementById("themeToggle");
+
+            if (isDarkMode) {
+                body.classList.remove("dark-mode");
+                body.classList.add("light-mode");
+                button.textContent = "Switch to Dark Mode";
+            } else {
+                body.classList.remove("light-mode");
+                body.classList.add("dark-mode");
+                button.textContent = "Switch to Light Mode";
+            }
+            isDarkMode = !isDarkMode;
+        }
+
+        // Open settings popup
+        function openSettingsPopup() {
+            document.getElementById("settingsPopup").style.display = "block";
+        }
+
+        // Close settings popup
+        function closeSettingsPopup() {
+            document.getElementById("settingsPopup").style.display = "none";
+        }
+
+        // Logout function
+        function logoutUser() {
+            localStorage.removeItem('userToken');
+            sessionStorage.removeItem('userToken');
+            window.location.href = '../index.html';
+        }
+    </script>
+    
+     
+</body>
+</html>
+
