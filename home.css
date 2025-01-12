@@ -428,3 +428,34 @@ iframe {
     cursor: pointer;
     color: #000;
 }
+
+
+
+
+/* Footer Header Styles */
+.bottom-header {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff; /* সাদা ব্যাকগ্রাউন্ড */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.icon-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.icon-item {
+  text-decoration: none;
+  color: #000; /* কালো আইকন রঙ */
+  font-size: 24px;
+  transition: color 0.3s ease;
+}
+
+.icon-item:hover {
+  color: #007BFF; /* হোভার করলে নীল রঙ দেখাবে */
+}
