@@ -1,11 +1,11 @@
 document.getElementById('load-files').addEventListener('click', () => {
-  // মূল API URL (রুট)
+  // রুট API URL (মূল রিপোজিটরির কনটেন্ট)
   const apiUrl = 'https://api.github.com/repos/vetadigitalstore/veta/contents/';
 
-  fetchFiles(apiUrl); // প্রথমবার রুট কন্টেন্ট লোড করবে
+  fetchFiles(apiUrl); // মূল কনটেন্ট লোড করার ফাংশন
 });
 
-// ফাইল লোড করার ফাংশন
+// ফাইল বা ফোল্ডার লোড করার ফাংশন
 function fetchFiles(apiUrl) {
   fetch(apiUrl)
     .then(response => response.json())
@@ -27,8 +27,8 @@ function fetchFiles(apiUrl) {
           if (item.type === 'dir') {
             // ফোল্ডারের জন্য ক্লিক ইভেন্ট
             link.addEventListener('click', (e) => {
-              e.preventDefault(); // ডিফল্ট রিফ্রেশ বন্ধ
-              fetchFiles(item.url); // ফোল্ডারের ভেতরের কন্টেন্ট লোড
+              e.preventDefault(); // রিফ্রেশ বন্ধ
+              fetchFiles(item.url); // সাবফোল্ডারের কন্টেন্ট লোড
             });
           } else {
             // ফাইলের জন্য GitHub ভিউ লিঙ্ক
