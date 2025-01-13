@@ -361,7 +361,7 @@ body.dark-mode #searchResults li:hover {
    /* iframe এর জন্য margin-top 20mm সেট করা */
 iframe {
     margin-top: 40px; /* ২০ মিমি নিচে */
-    width: 100%;
+    width: 95%;
     height: 2000px;
     border: none; /* বর্ডার সরানো */
 }
