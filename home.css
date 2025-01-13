@@ -17,7 +17,7 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
-    width: 95%;
+    width: 100%;
     height: 28px;
 }
 
@@ -57,6 +57,7 @@ body {
 .header-icons .three-dots {
     font-size: 24px;
     cursor: pointer;
+    margin-right: 10px;
 }
 
 /* Sidebar Styles */
@@ -358,7 +359,7 @@ body.dark-mode #searchResults li:hover {
     text-decoration: underline; /* Underline on hover */
 }
 
-  
+   
 
 
 /* Popup Styling (same as earlier popups) */
