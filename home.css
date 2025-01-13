@@ -362,7 +362,7 @@ body.dark-mode #searchResults li:hover {
 iframe {
     margin-top: 40px; /* ২০ মিমি নিচে */
     width: 100%;
-    height: 100%;
+    height: 1000%;
     border: none; /* বর্ডার সরানো */
 }
 
