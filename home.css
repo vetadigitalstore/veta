@@ -37,7 +37,7 @@ body {
 .title {
     font-size: 20px;
     font-weight: bold;
-    margin-right: 50px;
+    margin-right: 30px;
     flex-grow: 1;
     text-align: center;
 }
@@ -47,6 +47,9 @@ body {
     align-items: center;
     gap: 20px;
 }
+
+
+
 
 .header-icons .notification,
 .header-icons .search {
@@ -61,6 +64,7 @@ body {
     margin-right: 30px;
     
 }
+
 
 /* Sidebar Styles */
 .sidebar {
@@ -370,7 +374,7 @@ body.dark-mode #searchResults li:hover {
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #fff; /* সাদা ব্যাকগ্রাউন্ড */
+  background-color: #fff; /* লাইট মোড ব্যাকগ্রাউন্ড */
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -383,14 +387,25 @@ body.dark-mode #searchResults li:hover {
 
 .icon-item {
   text-decoration: none;
-  color: #000; /* কালো আইকন রঙ */
+  color: #000; /* লাইট মোডে কালো আইকন রঙ */
   font-size: 24px;
   transition: color 0.3s ease;
 }
 
 .icon-item:hover {
-  color: #007BFF; /* হোভার করলে নীল রঙ দেখাবে */
+  color: #007BFF; /* হোভার করলে নীল রঙ */
 }
 
+/* Dark Mode Styles */
+body.dark-mode .bottom-header {
+  background-color: #333; /* ডার্ক মোড ব্যাকগ্রাউন্ড */
+  box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.1);
+}
 
+body.dark-mode .icon-item {
+  color: #fff; /* ডার্ক মোডে সাদা আইকন রঙ */
+}
 
+body.dark-mode .icon-item:hover {
+  color: #007BFF; /* হোভার করলে নীল রঙ */
+}
