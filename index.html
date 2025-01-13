@@ -10,6 +10,9 @@
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="home.css">
+	
+	
+   
  
     <script type="module" src="app.js" defer></script>
 </head>
@@ -55,16 +58,29 @@
         </div>
     </div>
 
-    <!-- Left Sidebar Menu -->
+    
+ <!-- Left Sidebar Menu -->
     <div class="sidebar left-sidebar" id="leftMenu">
         <button class="close-btn" onclick="closeLeftMenu()">&#10005;</button>
         <ul>
+        	<a href="index.html" >
             <li><span class="icon"><i class="fas fa-home"></i></span> Home</li>
+            </a>
+            
+            <a href="about.html" >
             <li><span class="icon"><i class="fas fa-user"></i></span> About</li>
+               </a>
+               
+            <a href="services.html" >
             <li><span class="icon"><i class="fas fa-cogs"></i></span> Services</li>
+               </a>
+               
+            <a href="contact.html" >
             <li><span class="icon"><i class="fas fa-phone-alt"></i></span> Contact</li>
+            </a>
         </ul>
     </div>
+
 
     <!-- Right Sidebar Menu -->
     <div class="sidebar right-sidebar" id="rightMenu">
@@ -139,7 +155,7 @@
         <div class="user-info">
             <p id="userUIDDisplay">UID: Loading...</p>
             <p id="userEmail">Email: Loading...</p>
-            <p id="phoneNumberDisplay">Phone Number: Loading...</p>
+            <p id="phoneNumberDisplay">Phone: Loading...</p>
         </div>
         <button class="update-form-btn" onclick="openUpdateForm()">Open Update Form</button>
         
@@ -181,7 +197,6 @@
 </footer>
 
     
-    
     <!-- JavaScript -->
     <script src="style.js"></script>
     <script type="module" src="home.js"></script>
@@ -206,6 +221,7 @@
         }
 
 
+
 function logoutUser() {
     // লোকাল স্টোরেজ বা সেশন ডেটা মুছে ফেলা
     localStorage.removeItem("userToken"); // লগইন টোকেন মুছে ফেলা
@@ -215,7 +231,7 @@ function logoutUser() {
     document.getElementById("fullNameDisplay").textContent = "Loading...";
     document.getElementById("userUIDDisplay").textContent = "UID: Loading...";
     document.getElementById("userEmail").textContent = "Email: Loading...";
-    document.getElementById("phoneNumberDisplay").textContent = "Phone Number: Loading...";
+    document.getElementById("phoneNumberDisplay").textContent = "Phone: Loading...";
 
     // লেজারের ডাটা লুকানো
     document.getElementById("ledgerData").style.display = "none";
@@ -235,13 +251,13 @@ function loadProfileData() {
         document.getElementById("fullNameDisplay").textContent = userData.fullName || "N/A";
         document.getElementById("userUIDDisplay").textContent = `UID: ${userData.uid || "N/A"}`;
         document.getElementById("userEmail").textContent = `Email: ${userData.email || "N/A"}`;
-        document.getElementById("phoneNumberDisplay").textContent = `Phone Number: ${userData.phone || "N/A"}`;
+        document.getElementById("phoneNumberDisplay").textContent = `Phone: ${userData.phone || "N/A"}`;
     } else {
         // ডিফল্ট মানে প্রোফাইল ডাটা সাফ করুন
         document.getElementById("fullNameDisplay").textContent = "Loading...";
         document.getElementById("userUIDDisplay").textContent = "UID: Loading...";
         document.getElementById("userEmail").textContent = "Email: Loading...";
-        document.getElementById("phoneNumberDisplay").textContent = "Phone Number: Loading...";
+        document.getElementById("phoneNumberDisplay").textContent = "Phone: Loading...";
     }
 }
 
