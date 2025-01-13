@@ -138,7 +138,7 @@ function fetchSearchResults() {
     }
 
     const pages = [
-        { title: "Home Page", url: "home.html" },
+        { title: "Home Page", url: "index.html" },
         { title: "About Us", url: "about.html" },
         { title: "Services", url: "services.html" },
         { title: "Contact Us", url: "contact.html" },
