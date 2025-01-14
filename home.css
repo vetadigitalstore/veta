@@ -421,3 +421,12 @@ body.dark-mode .icon-item:hover {
         background-color: #fff;
         color: #000;
     }
+
+
+a {
+    text-decoration: none; /* আন্ডারলাইন সরাবে */
+}
+
+a:hover {
+    text-decoration: none; /* হোভারের সময়ও আন্ডারলাইন সরিয়ে রাখবে */
+}
