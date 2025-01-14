@@ -409,3 +409,15 @@ body.dark-mode .icon-item {
 body.dark-mode .icon-item:hover {
   color: #007BFF; /* হোভার করলে নীল রঙ */
 }
+
+
+
+    body.dark-mode {
+        background-color: #000;
+        color: #fff;
+    }
+
+    body.light-mode {
+        background-color: #fff;
+        color: #000;
+    }
