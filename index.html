@@ -12,6 +12,20 @@
     <link rel="stylesheet" href="home.css">
     <script type="module" src="app.js" defer></script>
 </head>
+
+<style>
+    body.dark-mode {
+        background-color: #000;
+        color: #fff;
+    }
+
+    body.light-mode {
+        background-color: #fff;
+        color: #000;
+    }
+</style>
+
+
 <body id="body">
     <!-- Header with Menu -->
 <div class="header">
@@ -180,8 +194,7 @@
 
 
     
- <!-- Iframe Tag -->
-    <iframe src="home/body/body.html" width="100%" height="1800px" style="border: 1px solid #000; margin-top: 40px; margin-bottom: 10px; ></iframe>
+<iframe src="home/body/body.html" width="100%" height="1800px" style="border: 1px solid #000; margin-top: 40px;"></iframe>
     
     
 
@@ -221,6 +234,39 @@
             }
             isDarkMode = !isDarkMode;
         }
+
+
+
+function toggleTheme() {
+    const body = document.getElementById("body");
+    const button = document.getElementById("themeToggle");
+    const iframe = document.querySelector("iframe");
+
+    if (isDarkMode) {
+        body.classList.remove("dark-mode");
+        body.classList.add("light-mode");
+        button.textContent = "Switch to Dark Mode";
+
+        // Iframe এর ডার্ক মোড বন্ধ করা
+        if (iframe.contentDocument) {
+            iframe.contentDocument.body.classList.remove("dark-mode");
+            iframe.contentDocument.body.classList.add("light-mode");
+        }
+    } else {
+        body.classList.remove("light-mode");
+        body.classList.add("dark-mode");
+        button.textContent = "Switch to Light Mode";
+
+        // Iframe এর ডার্ক মোড চালু করা
+        if (iframe.contentDocument) {
+            iframe.contentDocument.body.classList.remove("light-mode");
+            iframe.contentDocument.body.classList.add("dark-mode");
+        }
+    }
+    isDarkMode = !isDarkMode;
+}
+
+
 
 
 
