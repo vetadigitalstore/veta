@@ -4,7 +4,7 @@
     justify-content: space-between;  /* Left and Right titles will be spaced out */
     padding: 20px;
     background: #20B2AA;
-    width: 95%;   
+    width: 100%;   
     height: 20px;  
 }
 
@@ -131,3 +131,32 @@
         background-color: #20B2AA !important; /* লাইট মোডে ব্যাকগ্রাউন্ড সাদা */
     }
 }
+
+
+
+.cover-title {
+    text-align: center;
+    font-size: 14px; /* সমস্ত টেক্সটের জন্য ডিফল্ট সাইজ */
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+}
+
+.cover-title h4 {
+    font-size: 16px; /* অ্যাপের নামের সাইজ */
+    font-weight: bold;
+    margin: 5px 0;
+    color: #000;
+}
+
+.cover-title p {
+    font-size: 12px; /* সংস্করণ এবং সাইজের জন্য সাইজ */
+    margin: 3px 0;
+    color: #555;
+}
+
+
+
+
+
+
