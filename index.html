@@ -12,13 +12,30 @@
     <link rel="stylesheet" href="home.css">
     <script type="module" src="app.js" defer></script>
 </head>
+
+<style>
+    body.dark-mode {
+        background-color: #000;
+        color: #fff;
+    }
+
+    body.light-mode {
+        background-color: #fff;
+        color: #000;
+    }
+</style>
+
+
 <body id="body">
     <!-- Header with Menu -->
 <div class="header">
     <div class="menu-icon" onclick="openLeftMenu()"><i class="fas fa-bars"></i></div>
     <img src="image/logo.svg" alt="Logo" class="logo">
     <div class="title">
-    <p id="fullNameDisplayHeader">VETA</p> <!-- হেডারের জন্য -->
+          <!-- প্রথম জায়গা -->
+<div class="title">
+    <p id="fullNameDisplay">Loading...</p>
+</div>
 </div>
     <div class="header-icons">
         <span class="nine-dots"><i class="fas fa-th"></i></span> <!-- নাইন ডট আইকন -->
@@ -143,26 +160,31 @@
 </div>
 
 
-<!-- প্রোফাইল পপআপ -->
+    <!-- Profile Popup -->
 <div class="popup" id="profilePopup">
-    <div class="popup-content">
+    <div class="popup-content profile-popup-content">
         <span class="close-btn" onclick="closeProfilePopup()">&#10005;</span>
-        <h1>
-            <p id="fullNameDisplayProfile">VETA</p> <!-- প্রোফাইল পপআপের জন্য -->
-        </h1>
-        <div class="logo-container" id="logoContainer">
-            <img src="image/logo.svg"  class="logo" alt="Profile Logo" id="profileLogo">
+        <div class="profile-header">
+            <div class="logo-container">
+                <img src="image/logo.svg" alt="Profile Logo" id="profileLogo">
+            </div>
+            <h1>
+                <!-- দ্বিতীয় জায়গা -->
+<div class="another-title">
+    <p id="fullNameDisplay2">Loading...</p>
+</div>
+            </h1>
         </div>
         <div class="user-info">
-            <p><strong></strong> <span id="userUIDDisplay">Loading...</span></p>
-        </div>
-        <div class="user-info">
-            <p><strong></strong> <span id="userEmail">Loading...</span></p>
-        </div>
-        <div class="user-info">
-            <p><strong></strong> <span id="phoneNumberDisplay">Loading...</span></p>
+            <p id="userUIDDisplay"><strong>UID:</strong> Loading...</p>
+            <p id="userEmail"><strong>Email:</strong> Loading...</p>
+            <p id="phoneNumberDisplay"><strong>Phone:</strong> Loading...</p>
         </div>
         <button class="update-form-btn" onclick="openUpdateForm()">Open Update Form</button>
+        <div id="ledgerData" style="display: none;">
+            <h2>Ledger Data</h2>
+            <p>এই ডাটা শুধুমাত্র লগইন অবস্থায় দেখা যাবে।</p>
+        </div>
     </div>
 </div>
 
@@ -182,8 +204,7 @@
 
 
     
- <!-- Iframe Tag -->
-    <iframe src="search/search/index.html" width="100%" height="1800px" style="border: 1px solid #000; margin-top: 40px;"></iframe>
+<iframe src="home/body/body.html" width="100%" height="1800px" style="border: 1px solid #000; margin-top: 40px;"></iframe>
     
     
 
@@ -223,6 +244,39 @@
             }
             isDarkMode = !isDarkMode;
         }
+
+
+
+function toggleTheme() {
+    const body = document.getElementById("body");
+    const button = document.getElementById("themeToggle");
+    const iframe = document.querySelector("iframe");
+
+    if (isDarkMode) {
+        body.classList.remove("dark-mode");
+        body.classList.add("light-mode");
+        button.textContent = "Switch to Dark Mode";
+
+        // Iframe এর ডার্ক মোড বন্ধ করা
+        if (iframe.contentDocument) {
+            iframe.contentDocument.body.classList.remove("dark-mode");
+            iframe.contentDocument.body.classList.add("light-mode");
+        }
+    } else {
+        body.classList.remove("light-mode");
+        body.classList.add("dark-mode");
+        button.textContent = "Switch to Light Mode";
+
+        // Iframe এর ডার্ক মোড চালু করা
+        if (iframe.contentDocument) {
+            iframe.contentDocument.body.classList.remove("light-mode");
+            iframe.contentDocument.body.classList.add("dark-mode");
+        }
+    }
+    isDarkMode = !isDarkMode;
+}
+
+
 
 
 
@@ -266,8 +320,34 @@ function loadProfileData() {
     }
 }
 
-      
     </script>
+    
+     <script>
+     
+     // প্রথম জায়গার এলিমেন্ট
+const fullNameDisplay = document.getElementById('fullNameDisplay');
+
+// দ্বিতীয় জায়গার এলিমেন্ট
+const fullNameDisplay2 = document.getElementById('fullNameDisplay2');
+
+// ফাংশন যা প্রথম জায়গার ডাটা দ্বিতীয় জায়গায় ট্রান্সফার করবে
+function transferData() {
+    // চেক করছি যদি firstNameDisplay থেকে কিছু ডাটা আছে
+    if (fullNameDisplay.textContent !== "Loading...") {
+        fullNameDisplay2.textContent = fullNameDisplay.textContent;
+    } else {
+        // যদি firstNameDisplay এ "Loading..." থাকে, কিছু সময় পরে আবার চেষ্টা করছি
+        setTimeout(transferData, 500);
+    }
+}
+
+// প্রথম জায়গায় ডাটা সেট করা
+fullNameDisplay.textContent = "VETA";  // আপনি এখানে ডাটা পরিবর্তন করতে পারেন
+
+// ডাটা ট্রান্সফার ফাংশন কল
+setTimeout(transferData, 500);  // 500 মিলিসেকেন্ড পর ডাটা ট্রান্সফার হবে
+     
+      </script>
     
     
 
