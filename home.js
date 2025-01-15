@@ -22,7 +22,27 @@ const auth = getAuth();
 const db = getFirestore();
 const storage = getStorage();
 
-// Display Logged-In User Email and Info
+// Function to Set User Data
+function setUserData(userUID, userEmail, userFullName, userPhoneNumber, profileLogoUrl = null) {
+    document.getElementById("userUIDDisplay").textContent = `UID: ${userUID}`;
+    document.getElementById("userEmail").textContent = `Email: ${userEmail}`;
+    document.getElementById("fullNameDisplay").textContent = `${userFullName || "Not provided"}`;
+    document.getElementById("phoneNumberDisplay").textContent = `Phone Number: ${userPhoneNumber || "Not provided"}`;
+
+    if (profileLogoUrl) {
+        document.getElementById("profileLogo").src = profileLogoUrl;
+    }
+}
+
+// Function to Set Full Name in Header and Profile Popup
+function setFullName(fullName) {
+    // হেডারে নাম সেট করা
+    document.getElementById("fullNameDisplayHeader").textContent = fullName || "Not provided";
+    // প্রোফাইল পপআপে নাম সেট করা
+    document.getElementById("fullNameDisplayProfile").textContent = fullName || "Not provided";
+}
+
+// Display Logged-In User Info
 auth.onAuthStateChanged(async (user) => {
     if (user) {
         const userUID = user.uid;
@@ -32,16 +52,19 @@ auth.onAuthStateChanged(async (user) => {
             const docSnap = await getDoc(userDocRef);
             if (docSnap.exists()) {
                 const userData = docSnap.data();
-                document.getElementById("userEmail").textContent = `Email: ${user.email}`;
-                document.getElementById("fullNameDisplay").textContent = `
 
- ${userData.fullName || "Not provided"}`;
-                document.getElementById("phoneNumberDisplay").textContent = `Phone Number: ${userData.phoneNumber || "Not provided"}`;
+                // Full Name সেট করা
+                setFullName(userData.fullName);
+
+                // অন্যান্য তথ্য সেট করা
                 document.getElementById("userUIDDisplay").textContent = `UID: ${userUID}`;
+                document.getElementById("userEmail").textContent = `Email: ${user.email}`;
+                document.getElementById("phoneNumberDisplay").textContent = `Phone Number: ${userData.phoneNumber || "Not provided"}`;
 
+                // প্রোফাইল লোগো সেট করা (যদি থাকে)
                 if (userData.profileLogo) {
-                    const logoUrl = await getDownloadURL(ref(storage, userData.profileLogo));
-                    document.getElementById("profileLogo").src = logoUrl;
+                    const profileLogoUrl = await getDownloadURL(ref(storage, userData.profileLogo));
+                    document.getElementById("profileLogo").src = profileLogoUrl;
                 }
             } else {
                 alert("No user data found.");
@@ -49,8 +72,14 @@ auth.onAuthStateChanged(async (user) => {
         } catch (error) {
             console.error("Error fetching user data:", error);
         }
-    } 
+    } else {
+        alert("No user is logged in. Redirecting to login page.");
+        window.location.href = "../index.html";
+    }
 });
+
+
+
 
 // Profile Logo Upload Handler
 document.getElementById("logoContainer").addEventListener("click", async () => {
