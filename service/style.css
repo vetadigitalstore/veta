@@ -35,6 +35,7 @@ body.dark-mode {
 header {
     text-align: center;
     margin-bottom: 40px;
+    margin-top: 30px; /* Added margin-top to move the header down by 10px */
 }
 
 header h1 {
