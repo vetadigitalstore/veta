@@ -72,23 +72,22 @@ function closeRegistrationPopup() {
     document.getElementById("registrationPopup").style.display = "none";
 }
 
-// Login function
+// লগইন ফাংশন
 function login() {
-    localStorage.setItem("isLoggedIn", "true"); // Set login status
-    window.location.href = "index.html"; // Redirect to home page
+    localStorage.setItem("isLoggedIn", "true"); // লগইন স্ট্যাটাস সেট করুন
+    window.location.href = "index.html"; // হোম পেজে রিডাইরেক্ট করুন
 }
 
-// Logout function
+// লগআউট ফাংশন
 function logout() {
-    localStorage.removeItem("isLoggedIn"); // Remove login status
-    window.location.href = "index.html"; // Redirect to login page
+    localStorage.removeItem("isLoggedIn"); // লগইন স্ট্যাটাস মুছে ফেলুন
+    window.location.href = "login/index.html"; // লগইন পেজে রিডাইরেক্ট করুন
 }
 
-// Check login status
+// লগইন চেক করার ফাংশন
 function checkLogin() {
     if (!localStorage.getItem("isLoggedIn")) {
-        // Directly open login popup if not logged in
-        openLoginPopup();
+        window.location.href = "login/index.html"; // লগইন পেজে রিডাইরেক্ট করুন
     }
 }
 
@@ -156,3 +155,5 @@ function checkUserLoggedIn() {
 }
 
 window.onload = checkUserLoggedIn;
+
+
