@@ -13,7 +13,9 @@ function fetchSearchResults() {
         { title: "About Us", url: "about.html" },
         { title: "Services", url: "service.html" },
         { title: "Contact Us", url: "contact.html" },
-        { title: "History", url: "history.html" }
+        { title: "Privacy Policy", url: "privacy.html" },
+        { title: "Terms & Conditions", url: "terms.html" },
+        
     ];
 
     const filteredResults = pages.filter(page => 
