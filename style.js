@@ -87,7 +87,7 @@ function logout() {
 // Check login status
 function checkLogin() {
     if (!localStorage.getItem("isLoggedIn")) {
-        // Show login popup if not logged in
+        // Directly open login popup if not logged in
         openLoginPopup();
     }
 }
