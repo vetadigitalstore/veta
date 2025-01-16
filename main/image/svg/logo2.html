@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veta Logo Animation</title>
+    <style>
+        body {
+            background-color: #000; /* Black for dark mode */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .logo {
+            width: 200px;
+            height: 200px;
+        }
+
+        rect {
+            fill: none;
+            stroke: #fff;
+            stroke-width: 5;
+            stroke-dasharray: 800; /* Large enough to cover the rectangle */
+            stroke-dashoffset: 800;
+            animation: drawRect 2s ease-in-out forwards;
+        }
+
+        text {
+            fill: white;
+            font-family: Arial, sans-serif;
+            font-size: 30px;
+            opacity: 0;
+            animation: fadeInText 2s ease-in-out forwards 1.5s;
+        }
+
+        .shine {
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            transform: translateX(-150%);
+            animation: shineEffect 2s ease-in-out infinite 3s;
+        }
+
+        @keyframes drawRect {
+            0% {
+                stroke-dashoffset: 800;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes fadeInText {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes shineEffect {
+            0% {
+                transform: translateX(-150%);
+            }
+            100% {
+                transform: translateX(150%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div style="position: relative; width: 200px; height: 200px;">
+        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+            <!-- Outer rectangle -->
+            <rect x="5" y="5" width="90" height="90" rx="10" ry="10" />
+            <!-- Text for "Veta" -->
+            <text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle">Veta</text>
+        </svg>
+        <!-- Shine effect -->
+        <div class="shine"></div>
+    </div>
+</body>
+</html>

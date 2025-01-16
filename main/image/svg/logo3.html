@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veta Logo Animation</title>
+    <style>
+        body {
+            background-color: #000; /* Black for dark mode */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .logo-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+
+        .circle {
+            fill: none;
+            stroke: #00ffcc;
+            stroke-width: 4;
+            stroke-dasharray: 628; /* 2 * π * r (r = 100px) */
+            stroke-dashoffset: 628;
+            animation: drawCircle 2s ease-in-out forwards;
+        }
+
+        .glow-circle {
+            fill: none;
+            stroke: rgba(0, 255, 204, 0.5);
+            stroke-width: 10;
+            filter: blur(10px);
+            animation: glowPulse 2.5s infinite;
+        }
+
+        text {
+            fill: white;
+            font-family: 'Arial', sans-serif;
+            font-size: 24px;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            opacity: 0;
+            animation: fadeInText 2s ease-in-out forwards 1.5s;
+        }
+
+        @keyframes drawCircle {
+            0% {
+                stroke-dashoffset: 628;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes glowPulse {
+            0% {
+                stroke-opacity: 0.4;
+            }
+            50% {
+                stroke-opacity: 1;
+            }
+            100% {
+                stroke-opacity: 0.4;
+            }
+        }
+
+        @keyframes fadeInText {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+            <!-- Glowing circle -->
+            <circle class="glow-circle" cx="100" cy="100" r="95" />
+
+            <!-- Main circle -->
+            <circle class="circle" cx="100" cy="100" r="95" />
+
+            <!-- Text in the center -->
+            <text x="100" y="110">Veta</text>
+        </svg>
+    </div>
+</body>
+</html>
