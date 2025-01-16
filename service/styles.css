@@ -20,6 +20,36 @@ body.light-mode {
     color: #000;
 }
 
+/* Additional Dark Mode Styles */
+body.dark-mode header {
+    border-bottom: 2px solid #fff;
+}
+
+body.dark-mode .service-card {
+    border: 1px solid #fff;
+}
+
+body.dark-mode footer {
+    border-top: 2px solid #fff;
+}
+
+body.dark-mode .service-card p {
+    color: #fff;
+}
+
+body.dark-mode footer .footer-links a {
+    color: #fff;
+}
+
+body.dark-mode .service-card .btn:hover {
+    border: 1px solid #fff;
+}
+
+body.dark-mode .mode-toggle {
+    background-color: #fff;
+    color: #000;
+}
+
 /* Header Section */
 header {
     background-color: transparent;
