@@ -84,10 +84,11 @@ function logout() {
     window.location.href = "login/index.html"; // লগইন পেজে রিডাইরেক্ট করুন
 }
 
-// লগইন চেক করার ফাংশন
 function checkLogin() {
-    if (!localStorage.getItem("isLoggedIn")) {
-        window.location.href = "login/index.html"; // লগইন পেজে রিডাইরেক্ট করুন
+    const isLoggedIn = localStorage.getItem("isLoggedIn"); // লগইন স্ট্যাটাস চেক
+    if (!isLoggedIn) {
+        alert("No user is logged in. Redirecting to login page.");
+        window.location.href = "login/index.html"; // লগইন পেজে রিডাইরেক্ট
     }
 }
 
