@@ -87,7 +87,8 @@ function logout() {
 // Check login status
 function checkLogin() {
     if (!localStorage.getItem("isLoggedIn")) {
-        window.location.href = "index.html"; // Redirect to login page
+        // Show login popup if not logged in
+        openLoginPopup();
     }
 }
 
@@ -127,8 +128,6 @@ function performSearch() {
 document.querySelector('.search').addEventListener('click', openSearchPopup);
 document.querySelector('.notification').addEventListener('click', openNotificationPopup);
 
-
-
 // Logout user function
 function logoutUser() {
     localStorage.removeItem('userToken');
@@ -157,5 +156,3 @@ function checkUserLoggedIn() {
 }
 
 window.onload = checkUserLoggedIn;
-
-
