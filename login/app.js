@@ -29,7 +29,7 @@ document.getElementById("loginForm").addEventListener("submit", async (event) =>
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         alert("Login Successful!");
-        window.location.href = "../index.html"; // Replace with your actual homepage
+        window.location.href = "../main.html"; // Replace with your actual homepage
     } catch (error) {
         alert(error.message);
     }
