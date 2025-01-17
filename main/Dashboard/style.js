@@ -66,7 +66,7 @@ function login() {
 // লগআউট ফাংশন
 function logout() {
     localStorage.removeItem("isLoggedIn"); // লগইন স্ট্যাটাস মুছে ফেলুন
-    window.location.href = "../../index.html"; // লগইন পেজে রিডাইরেক্ট করুন
+    window.location.href = "../../../index.html"; // লগইন পেজে রিডাইরেক্ট করুন
 }
 
 // লগইন চেক করার ফাংশন
