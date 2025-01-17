@@ -12,12 +12,12 @@ function fetchSearchResults() {
 
     // সার্চ ডেটা (ডেমো ডেটা, সার্ভারের সাথে ইন্টিগ্রেট করতে API ব্যবহার করুন)
     const pages = [
-        { title: "Home Page", url: "home.html" },
+        { title: "Home Page", url: "index.html" },
         { title: "About Us", url: "about.html" },
         { title: "Services", url: "services.html" },
         { title: "Contact Us", url: "contact.html" },
         { title: "History", url: "history.html" },
-        { title: "Palash Mondal", url: "history.html" },
+        { title: "Log in", url: "../main/index.html" },
     ];
 
     // ইনপুট অনুযায়ী পেজ ফিল্টার করা
