@@ -60,7 +60,7 @@ function closeSettingsPopup() {
 // লগইন ফাংশন
 function login() {
     localStorage.setItem("isLoggedIn", "true"); // লগইন স্ট্যাটাস সেট করুন
-    window.location.href = "home/home.html"; // হোম পেজে রিডাইরেক্ট করুন
+    window.location.href = "Dashboard/index.html"; // হোম পেজে রিডাইরেক্ট করুন
 }
 
 // লগআউট ফাংশন
