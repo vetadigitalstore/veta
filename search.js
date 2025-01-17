@@ -15,6 +15,7 @@ function fetchSearchResults() {
         { title: "Contact Us", url: "contact.html" },
         { title: "Privacy Policy", url: "privacy.html" },
         { title: "Terms & Conditions", url: "terms.html" },
+        { title: "Log in", url: "main/index.html" },
         
     ];
 
