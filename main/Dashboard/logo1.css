@@ -1,0 +1,56 @@
+body {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.logo {
+    width: 150px;
+    height: 150px;
+}
+
+rect {
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+circle {
+    stroke-dasharray: 251.2; /* 2 * π * r (40px) */
+    stroke-dashoffset: 251.2;
+    animation: drawCircle 2s ease-in-out forwards 0.5s;
+}
+
+path {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: drawPath 1.5s ease-in-out forwards 2s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes drawCircle {
+    0% {
+        stroke-dashoffset: 251.2;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes drawPath {
+    0% {
+        stroke-dashoffset: 100;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
