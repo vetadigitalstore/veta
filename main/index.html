@@ -32,7 +32,7 @@
             <h1 class="typing">VETA LOGIN</h1>
         </div>
         <button class="action-btn" onclick="document.getElementById('loginModal').style.display='block'">Login</button>
-        <button class="action-btn" onclick="document.getElementById('signUpModal').style.display='block'">Sign Up</button>
+        <button class="action-btn" onclick="document.getElementById('signUpModal').style.display='block'">Create Account</button>
     </div>
     
     <!-- Login Modal -->
@@ -65,14 +65,14 @@
     <div id="signUpModal" class="modal" style="display: none;">
         <div class="modal-content">
             <span class="close-btn" onclick="document.getElementById('signUpModal').style.display='none'">&times;</span>
-            <h2>Sign Up</h2>
+            <h2>Create Account</h2>
             <form id="signUpForm">
                 <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
                 <input type="email" id="email" name="email" placeholder="Email ID" required>
                 <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" required>
                 <input type="password" id="newPassword" name="newPassword" placeholder="Password" required>
                 <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
-                <button type="submit" class="modal-btn"Register Now"</button>
+                <button type="submit" class="modal-btn">Create Account"</button>
             </form>
         </div>
     </div>
