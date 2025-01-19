@@ -288,7 +288,15 @@ console.log('User Token:', localStorage.getItem('userToken')); // Check if token
         };
     </script>
     
-    
+    <script>
+    function openProfilePopup() {
+        document.getElementById('profilePopup').style.display = 'block';
+    }
+
+    function closeProfilePopup() {
+        document.getElementById('profilePopup').style.display = 'none';
+    }
+</script>
     
      
 </body>
