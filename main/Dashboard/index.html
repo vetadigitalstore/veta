@@ -226,14 +226,13 @@
       
 
 
-// Logout function
 function logoutUser() {
-    localStorage.removeItem('userToken'); // Remove userToken from localStorage
-    sessionStorage.removeItem('userToken'); // Optionally remove from sessionStorage as well
-    alert("Logged out successfully!");
-
-    // Redirect to login page
-    window.location.href = "../index.html"; // Replace with your login page URL
+    firebase.auth().signOut().then(() => {
+        alert("Logged out successfully!");
+        window.location.href = "../index.html"; // Login পেজে রিডাইরেক্ট
+    }).catch((error) => {
+        console.error("Logout Error: ", error);
+    });
 }
 
 function openProfilePopup() {
