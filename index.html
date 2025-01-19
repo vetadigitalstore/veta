@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Your Profile - SoulfulTune</title>
+    <!-- Font Awesome CDN -->
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="main/Dashboard/home.css">
+    	
+    
+    
+</head>
+<body id="body">
+     <!-- Header with Menu -->
+<div class="header">
+    <div class="menu-icon" onclick="openLeftMenu()"><i class="fas fa-bars"></i></div>
+    <img src="logo.svg" alt="Logo" class="logo">
+    <div class="title">
+          <!-- প্রথম জায়গা -->
+<div class="title">
+    <p id="fullNameDisplay">Loading...</p>
+</div>
+</div>
+    <div class="header-icons">
+        <span class="nine-dots"><i class="fas fa-th" id="open-popup"></i></span> <!-- নাইন ডট আইকন -->
+        <span class="notification"><i class="fas fa-bell"></i></span>
+        <a href="main/Dashboard/search/search.html" class="icon-item"><i class="fas fa-search"></i></a>
+        <span class="three-dots" onclick="openRightMenu()"><i class="fas fa-ellipsis-v"></i></span>
+    </div>
+</div>
+    
+      <!-- Popup Window -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span class="close-btn" id="close-popup">&times;</span>
+      <div class="popup-body">
+        <!-- Category content (same as previous categories) -->
+        <div class="category-box">
+          <i class="fas fa-laptop-code"></i>
+          <h3>Web Development</h3>
+        </div>
+        <div class="category-box">
+          <i class="fas fa-paint-brush"></i>
+          <h3>Design</h3>
+        </div>
+        <div class="category-box">
+          <i class="fas fa-music"></i>
+          <h3>Music</h3>
+        </div>
+        <div class="category-box">
+          <i class="fas fa-camera"></i>
+          <h3>Photography</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+    <!-- Search Popup -->
+    <div class="popup" id="searchPopup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closeSearchPopup()">&#10005;</span>
+            <h2>Search</h2>
+            <input 
+                type="text" 
+                placeholder="Search here..." 
+                id="searchInput" 
+                onkeyup="fetchSearchResults()" 
+            />
+            <ul id="searchResults">
+                <!-- Search রেজাল্ট এখানে ডাইনামিক্যালি দেখানো হবে -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Notification Popup -->
+    <div class="popup" id="notificationPopup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closeNotificationPopup()">&#10005;</span>
+            <h2>Notifications</h2>
+            <ul id="notificationList">
+                <li><a href="#" class="notification-link">No new notifications.</a></li>
+                <li><a href="#" class="notification-link">No new notifications.</a></li>
+            </ul>
+        </div>
+    </div>
+
+     <!-- Left Sidebar Menu -->
+    <div class="sidebar left-sidebar" id="leftMenu">
+        <button class="close-btn" onclick="closeLeftMenu()">&#10005;</button>
+        <ul>
+        	<a href="index.html" >
+            <li><span class="icon"><i class="fas fa-home"></i></span> Home</li>
+            </a>
+            
+            <a href="about.html" >
+            <li><span class="icon"><i class="fas fa-user"></i></span> About</li>
+               </a>
+               
+            <a href="service.html" >
+            <li><span class="icon"><i class="fas fa-cogs"></i></span> Services</li>
+               </a>
+               
+            <a href="contact.html" >
+            <li><span class="icon"><i class="fas fa-phone-alt"></i></span> Contact</li>
+            </a>
+        </ul>
+    </div>
+
+    <!-- Right Sidebar Menu -->
+    <div class="sidebar right-sidebar" id="rightMenu">
+        <button class="close-btn" onclick="closeRightMenu()">&#10005;</button>
+        <ul>
+            <li onclick="openProfilePopup()"><span class="icon"><i class="fas fa-user"></i></span> Profile</li>
+            <li onclick="openSettingsPopup()"><span class="icon"><i class="fas fa-cogs"></i></span> Settings</li>
+            <li><span class="icon"><i class="fas fa-bell"></i></span> Notifications</li>
+            <a href="main/index.html" >
+            <li><span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login</li>
+            </a>
+            <li onclick="logoutUser()"><span class="icon"><i class="fas fa-sign-out-alt"></i></span> Logout</li>
+        </ul>
+    </div>
+
+    <!-- Profile Popup -->
+<div class="popup" id="profilePopup">
+    <div class="popup-content profile-popup-content">
+        <span class="close-btn" onclick="closeProfilePopup()">&#10005;</span>
+        <div class="profile-header">
+            <div class="logo-container">
+                <img src="logo.svg" alt="Profile Logo" id="profileLogo">
+            </div>
+            <h1>
+                <div class="another-title">
+                    <p id="fullNameDisplay2">Loading...</p>
+                </div>
+            </h1>
+        </div>
+        <div class="user-info">
+            <p id="userUIDDisplay"><strong>UID:</strong> Loading...</p>
+            <p id="userEmail"><strong>Email:</strong> Loading...</p>
+            <p id="phoneNumberDisplay"><strong>Phone:</strong> Loading...</p>
+        </div>
+        <button class="update-form-btn" onclick="openUpdateForm()">Open Update Form</button>
+        <div id="ledgerData" style="display: none;">
+            <h2>Ledger Data</h2>
+            <p>এই ডাটা শুধুমাত্র লগইন অবস্থায় দেখা যাবে।</p>
+        </div>
+    </div>
+</div>
+
+    <!-- Settings Popup for Dark/Light Mode -->
+    <div class="popup" id="settingsPopup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closeSettingsPopup()">&#10005;</span>
+            <h2>Settings</h2>
+            <div class="theme-toggle">
+                <button id="themeToggle" onclick="toggleTheme()">Switch to Dark Mode</button>
+            </div>
+        </div>
+    </div>
+
+    
+    
+    <!-- এখানে iframe ব্যবহার করা হয়েছে -->
+     <iframe src="body/body.html" width="100%" height="1800px" style="border: 1px solid #000; margin-top: 50px;   margin: center;"></iframe>
+    
+     <!-- Footer Header -->
+<footer class="bottom-header">
+  <nav class="icon-nav">
+    <a href="index.html" class="icon-item">
+      <i class="fas fa-home"></i>
+      <span>Home</span>
+    </a>
+    <a href="search/search.html" class="icon-item">
+      <i class="fa fa-th-large"></i>
+      <span>Apps</span>
+    </a>
+    <a href="main/Dashboard/search/search.html" class="icon-item">
+      <i class="fas fa-search"></i>
+      <span>Search</span>
+    </a>
+    <a href="category/index.html" class="icon-item">
+      <i class="fa fa-gamepad"></i>
+      <span>Games</span>
+    </a>
+    <a href="main/Dashboard/category/index.html" class="icon-item">
+      <i class="fa fa-list-alt"></i>
+      <span>Category</span>
+    </a>
+  </nav>
+</footer>
+    
+    
+    
+    <!-- JavaScript -->
+    <script src="main/Dashboard/style.js"></script>
+    <script type="module" src="main/Dashboard/home.js"></script>
+    <script>
+        // Dark mode toggle logic
+        let isDarkMode = false;
+
+        function toggleTheme() {
+            const body = document.getElementById("body");
+            const button = document.getElementById("themeToggle");
+
+            if (isDarkMode) {
+                body.classList.remove("dark-mode");
+                body.classList.add("light-mode");
+                button.textContent = "Switch to Dark Mode";
+            } else {
+                body.classList.remove("light-mode");
+                body.classList.add("dark-mode");
+                button.textContent = "Switch to Light Mode";
+            }
+            isDarkMode = !isDarkMode;
+        }
+
+        // Open settings popup
+        function openSettingsPopup() {
+            document.getElementById("settingsPopup").style.display = "block";
+        }
+
+        // Close settings popup
+        function closeSettingsPopup() {
+            document.getElementById("settingsPopup").style.display = "none";
+        }
+
+
+
+
+    
+    </script>
+      
+     <script>
+     	  // logo animation 
+        window.onload = function() {
+            const logo = document.getElementById('logo');
+            logo.addEventListener('load', function() {
+                const svg = logo.contentDocument;
+                const rect = svg.querySelector('rect');
+                const circle = svg.querySelector('circle');
+                const path = svg.querySelector('path');
+
+                rect.style.animation = 'fadeIn 1s ease-in-out forwards';
+                circle.style.animation = 'drawCircle 2s ease-in-out forwards 0.5s';
+                path.style.animation = 'drawPath 1.5s ease-in-out forwards 2s';
+            });
+        };
+        
+        
+        // Function to open the profile popup
+function openProfilePopup() {
+    // Check if the user is logged in
+    if (localStorage.getItem('userToken') || sessionStorage.getItem('userToken')) {
+        // If logged in, show the profile popup
+        document.getElementById('profilePopup').style.display = 'block';
+
+        // Optionally, load user data into the popup
+        loadUserData();
+    } else {
+        // If not logged in, redirect to the login page
+        window.location.href = 'main/index.html';
+    }
+}
+
+// Function to close the profile popup
+function closeProfilePopup() {
+    document.getElementById('profilePopup').style.display = 'none';
+}
+
+// Function to load user data into the popup (example)
+function loadUserData() {
+    // Replace with actual logic to load user data
+    document.getElementById('fullNameDisplay2').innerText = "John Doe"; // Example user name
+    document.getElementById('userUIDDisplay').innerText = "UID: 12345"; // Example UID
+    document.getElementById('userEmail').innerText = "Email: john@example.com"; // Example email
+    document.getElementById('phoneNumberDisplay').innerText = "Phone: 123-456-7890"; // Example phone number
+}
+
+// Function to logout and clear user data
+function logoutUser() {
+    // Clear user data from localStorage and sessionStorage
+    localStorage.removeItem('userToken');
+    sessionStorage.removeItem('userToken');
+    
+    // Hide the profile popup if open
+    closeProfilePopup();
+
+    // Redirect to login page
+    window.location.href = 'main/index.html';
+}
+
+// Block back navigation after logout
+window.history.pushState(null, null, window.location.href);
+window.onpopstate = function () {
+    window.history.pushState(null, null, window.location.href);
+    window.location.href = 'main/index.html'; // Redirect to login page when back is pressed
+}
+
+
+
+
+    </script>
+    
+    <script>
+     
+     // প্রথম জায়গার এলিমেন্ট
+const fullNameDisplay = document.getElementById('fullNameDisplay');
+
+// দ্বিতীয় জায়গার এলিমেন্ট
+const fullNameDisplay2 = document.getElementById('fullNameDisplay2');
+
+// ফাংশন যা প্রথম জায়গার ডাটা দ্বিতীয় জায়গায় ট্রান্সফার করবে
+function transferData() {
+    // চেক করছি যদি firstNameDisplay থেকে কিছু ডাটা আছে
+    if (fullNameDisplay.textContent !== "Loading...") {
+        fullNameDisplay2.textContent = fullNameDisplay.textContent;
+    } else {
+        // যদি firstNameDisplay এ "Loading..." থাকে, কিছু সময় পরে আবার চেষ্টা করছি
+        setTimeout(transferData, 500);
+    }
+}
+
+// প্রথম জায়গায় ডাটা সেট করা
+fullNameDisplay.textContent = "VETA";  // আপনি এখানে ডাটা পরিবর্তন করতে পারেন
+
+// ডাটা ট্রান্সফার ফাংশন কল
+setTimeout(transferData, 500);  // 500 মিলিসেকেন্ড পর ডাটা ট্রান্সফার হবে
+     
+      </script>
+    
+     
+</body>
+</html>
