@@ -118,30 +118,23 @@
         </ul>
     </div>
 
-    <!-- Profile Popup -->
-<div class="popup" id="profilePopup" style="display:none;">
-    <div class="popup-content profile-popup-content">
+
+
+
+ <div id="profilePopup" class="popup" style="display: none;">
+    <div class="popup-content">
         <span class="close-btn" onclick="closeProfilePopup()">&#10005;</span>
-        <div class="profile-header">
-            <div class="logo-container">
-                <img src="logo.svg" alt="Profile Logo" id="profileLogo">
-            </div>
-            <h1>
-                <p id="fullNameDisplay">Loading...</p>
-            </h1>
-        </div>
-        <div class="user-info">
-            <p id="userUIDDisplay"><strong>UID:</strong> Loading...</p>
-            <p id="userEmail"><strong>Email:</strong> Loading...</p>
-            <p id="phoneNumberDisplay"><strong>Phone:</strong> Loading...</p>
-        </div>
-        <button class="update-form-btn" onclick="openUpdateForm()">Open Update Form</button>
-        <div id="ledgerData" style="display: none;">
-            <h2>Ledger Data</h2>
-            <p>এই ডাটা শুধুমাত্র লগইন অবস্থায় দেখা যাবে।</p>
-        </div>
+        <h2>Profile</h2>
+        <p>UID: User ID</p>
+        <p>Email: User Email</p>
+        <button onclick="logoutUser()">Logout</button>
     </div>
 </div>
+
+
+
+
+
 
 <!-- Profile Button -->
 <li onclick="openProfilePopup()">
