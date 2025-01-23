@@ -17,7 +17,8 @@ function fetchSearchResults() {
         { title: "Services", url: "services.html" },
         { title: "Contact Us", url: "contact.html" },
         { title: "Calculator", url: "../calculator.html" },
-        { title: "Palash Mondal", url: "history.html" },
+        { title: "Right Angle", url: "../calculator/right_angle/right_angle.html" },
+        { title: "Right Angle", url: "../calculator/calculator/index.html" },
     ];
 
     // ইনপুট অনুযায়ী পেজ ফিল্টার করা
