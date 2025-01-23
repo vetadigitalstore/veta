@@ -430,3 +430,16 @@ a {
 a:hover {
     text-decoration: none; /* হোভারের সময়ও আন্ডারলাইন সরিয়ে রাখবে */
 }
+.icon-link {
+    text-decoration: none; /* আন্ডারলাইন সরানোর জন্য */
+    color: black; /* টেক্সট কালার পরিবর্তন করার জন্য */
+}
+
+.icon-link:hover {
+    color: #007BFF; /* হোভারে টেক্সট কালার পরিবর্তন হবে */
+}
+
+.icon-link .icon {
+    margin-right: 8px; /* আইকন এবং টেক্সটের মধ্যে 8px গ্যাপ */
+    display: inline-block; /* ইনলাইন আইকন উপাদান ঠিক রাখতে */
+}
