@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veta - Sidebar</title>
+  <!-- Bootstrap CSS for Glyphicons -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden; /* Prevent entire page scrolling */
+      background-color: white; /* Set background to white */
+      color: black; /* Set text color to black */
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background-color: white; /* White background */
+      color: black; /* Black text color */
+      z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow */
+    }
+    .menu-icon {
+      display: flex;
+      align-items: center;
+    }
+    .menu-icon i {
+      font-size: 25px;
+      cursor: pointer;
+      color: black; /* Black icon color */
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-left: 15px;
+    }
+    .logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+    .title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      font-weight: bold;
+      color: black; /* Black text color */
+    }
+    .icons {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .icons i {
+      font-size: 25px;
+      cursor: pointer;
+      color: black; /* Black icon color */
+    }
+    main {
+      margin-top: 60px; /* Header height */
+      margin-bottom: 60px; /* Footer height */
+      overflow-y: auto;
+      padding: 20px;
+      background-color: white; /* White background */
+      color: black; /* Black text color */
+    }
+    
+    
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: white; /* White background */
+      color: black; /* Black text color */
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px 0;
+      z-index: 1000;
+      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* Light shadow */
+    }
+    .footer-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 14px;
+    }
+    .footer-item i {
+      font-size: 25px;
+      margin-bottom: 5px;
+      cursor: pointer;
+      color: black; /* Black icon color */
+    }
+
+    /* Sidebar Common Styles */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      height: 100%;
+      width: 250px;
+      background-color: white; /* White background */
+      color: black; /* Black text color */
+      overflow-y: auto;
+      padding: 20px;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      z-index: 2000;
+      box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1); /* Light shadow on left sidebar */
+    }
+    .sidebar-right {
+      right: 0;
+      left: auto;
+      transform: translateX(100%);
+      box-shadow: -4px 0 6px rgba(0, 0, 0, 0.1); /* Light shadow on right sidebar */
+    }
+    .sidebar.active {
+      transform: translateX(0);
+    }
+    .close-btn {
+      background-color: transparent;
+      border: none;
+      color: black; /* Black close button color */
+      font-size: 20px;
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    .sidebar h3 {
+      margin-top: 10px;
+    }
+    .sidebar p {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+ 
+    .menu-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    .menu-list li {
+  margin-bottom: 5px;  /* কমানো হয়েছে (আগে 20px ছিল) */
+  display: flex;
+  align-items: center;
+  gap: 3px;  /* কমানো হয়েছে (আগে 10px ছিল) */
+}
+    .menu-list a {
+      text-decoration: none;
+      color: black;
+      font-size: 18px;
+      display: block;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .menu-list a:hover {
+      background-color: #f1f1f1;
+    }
+    .menu-list i {
+      font-size: 25px;
+    }
+    
+/* Popup styles */
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  z-index: 3000;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 320px; /* Adjusted width to fit the grid */
+  text-align: center;
+  position: relative;
+}
+
+/* Close button styles */
+.popup .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  cursor: pointer;
+  color: black;
+}
+
+/* Card container styles */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 10px; /* Space between cards */
+  margin-top: 15px;
+}
+
+/* Individual card styles */
+.card {
+  width: 75px;
+  height: 75px;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.card-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+  margin-top: 5px;
+}
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="menu-icon">
+    <i class="glyphicon glyphicon-menu-hamburger" id="menu-btn"></i>
+    <div class="logo">
+      <img src="image/logo/logo.svg" alt="Logo">
+    </div>
+  </div>
+  <div class="title">Veta</div>
+  <div class="icons">
+    <a href="#notifications"><i class="glyphicon glyphicon-bell" title="Notifications"></i></a>
+    <a href="#search"><i class="glyphicon glyphicon-search" title="Search"></i></a>
+    <a href="#more"><i class="glyphicon glyphicon-option-vertical" id="dot-btn" title="More"></i></a>
+  </div>
+</header>
+
+  <iframe src="content/calculator/index.html" 
+        style="width: 100%; height: 100vh; overflow: auto;" 
+        frameborder="0">
+</iframe>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-item">
+    <a href="index.html"><i class="glyphicon glyphicon-home"></i></a>
+    <span>Home</span>
+  </div>
+  <div class="footer-item">
+    <a href="#category"><i class="glyphicon glyphicon-th-list"></i></a>
+    <span>Category</span>
+  </div>
+  <div class="footer-item">
+    <a href="#search"><i class="glyphicon glyphicon-search"></i></a>
+    <span>Search</span>
+  </div>
+  <div class="footer-item">
+    <a href="javascript:void(0)" id="service-btn"><i class="glyphicon glyphicon-th"></i></a>
+    <span>Veta App</span>
+  </div>
+  <div class="footer-item">
+    <a href="#profile"><i class="glyphicon glyphicon-user"></i></a>
+    <span>Profile</span>
+  </div>
+</footer>
+
+<!-- Service Popup Window -->
+<div class="popup" id="service-popup">
+  <div class="popup-content">
+    <span class="close-btn" id="close-popup-btn">&times;</span>
+    <h3>Service Details</h3>
+    <div class="card-container">
+      <div class="card">
+        <a href="index.html" target="_blank">
+          <img src="image/logo/logo.svg" alt="Logo 1" class="card-logo">
+          <div class="card-title">Veta</div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="https://your-link2.com" target="_blank">
+          <img src="image/logo/logo.svg" alt="Logo 2" class="card-logo">
+          <div class="card-title">Calculator</div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="https://your-link3.com" target="_blank">
+          <img src="image/logo/logo.svg" alt="Logo 3" class="card-logo">
+          <div class="card-title">Veta 3</div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="https://your-link4.com" target="_blank">
+          <img src="image/logo/logo.svg" alt="Logo 4" class="card-logo">
+          <div class="card-title">Veta 4</div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="https://your-link5.com" target="_blank">
+          <img src="image/logo/logo.svg" alt="Logo 5" class="card-logo">
+          <div class="card-title">Veta 5</div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="https://your-link6.com" target="_blank">
+          <img src="image/logo/logo.svg" alt="Logo 6" class="card-logo">
+          <div class="card-title">Veta 6</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Left Sidebar -->
+<div class="sidebar" id="left-sidebar">
+  <button class="close-btn" id="close-menu-btn">&times;</button>
+  <h3>Menu</h3>
+  <ul class="menu-list">
+    <li><i class="glyphicon glyphicon-dashboard"></i><a href="#">Dashboard</a></li>
+    <li><i class="glyphicon glyphicon-list-alt"></i><a href="#">Orders</a></li>
+    <li><i class="glyphicon glyphicon-cog"></i><a href="#">Settings</a></li>
+    <li><i class="glyphicon glyphicon-stats"></i><a href="#">Reports</a></li>
+    <li><i class="glyphicon glyphicon-question-sign"></i><a href="#">Help</a></li>
+  </ul>
+</div>
+
+<!-- Right Sidebar -->
+<div class="sidebar sidebar-right" id="right-sidebar">
+  <button class="close-btn" id="close-dot-btn">&times;</button>
+  <h3>More Options</h3>
+  <ul class="menu-list">
+    <li><i class="glyphicon glyphicon-user"></i><a href="#">Account Settings</a></li>
+    <li><i class="glyphicon glyphicon-bell"></i><a href="#">Notifications</a></li>
+    <li><i class="glyphicon glyphicon-lock"></i><a href="#">Privacy</a></li>
+    <li><i class="glyphicon glyphicon-globe"></i><a href="#">Language</a></li>
+    <li><i class="glyphicon glyphicon-log-out"></i><a href="#">Log Out</a></li>
+  </ul>
+</div>
+<!-- Scripts -->
+<script>
+  // Left Sidebar
+  const menuBtn = document.getElementById('menu-btn');
+  const leftSidebar = document.getElementById('left-sidebar');
+  const closeMenuBtn = document.getElementById('close-menu-btn');
+
+  menuBtn.addEventListener('click', function() {
+    leftSidebar.classList.add('active');
+  });
+
+  closeMenuBtn.addEventListener('click', function() {
+    leftSidebar.classList.remove('active');
+  });
+
+  // Right Sidebar
+  const dotBtn = document.getElementById('dot-btn');
+  const rightSidebar = document.getElementById('right-sidebar');
+  const closeDotBtn = document.getElementById('close-dot-btn');
+
+  dotBtn.addEventListener('click', function() {
+    rightSidebar.classList.add('active');
+  });
+
+  closeDotBtn.addEventListener('click', function() {
+    rightSidebar.classList.remove('active');
+  });
+  
+    // Popup window
+  const serviceBtn = document.getElementById('service-btn');
+  const servicePopup = document.getElementById('service-popup');
+  const closePopupBtn = document.getElementById('close-popup-btn');
+
+  // Show popup when service button is clicked
+  serviceBtn.addEventListener('click', function() {
+    servicePopup.style.display = 'flex';
+  });
+
+  // Close popup when close button is clicked
+  closePopupBtn.addEventListener('click', function() {
+    servicePopup.style.display = 'none';
+  });
+
+  // Close popup when clicked outside the content area
+  window.addEventListener('click', function(event) {
+    if (event.target === servicePopup) {
+      servicePopup.style.display = 'none';
+    }
+  });
+</script>
+
+<!-- Bootstrap JS (Optional for any additional Bootstrap components) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+ 
