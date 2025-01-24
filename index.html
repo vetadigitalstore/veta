@@ -76,11 +76,7 @@
       color: black; /* Black text color */
     }
     
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
+    
     footer {
       position: fixed;
       bottom: 0;
@@ -174,6 +170,73 @@
     .menu-list i {
       font-size: 25px;
     }
+    
+/* Popup styles */
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  z-index: 3000;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 320px; /* Adjusted width to fit the grid */
+  text-align: center;
+  position: relative;
+}
+
+/* Close button styles */
+.popup .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  cursor: pointer;
+  color: black;
+}
+
+/* Card container styles */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 10px; /* Space between cards */
+  margin-top: 15px;
+}
+
+/* Individual card styles */
+.card {
+  width: 75px;
+  height: 75px;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.card-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+  margin-top: 5px;
+}
   </style>
 </head>
 <body>
@@ -189,15 +252,18 @@
   <div class="title">Veta</div>
   <div class="icons">
     <a href="#notifications"><i class="glyphicon glyphicon-bell" title="Notifications"></i></a>
-    <a href="index.html"><i class="glyphicon glyphicon-search" title="Search"></i></a>
+    <a href="#search"><i class="glyphicon glyphicon-search" title="Search"></i></a>
     <a href="#more"><i class="glyphicon glyphicon-option-vertical" id="dot-btn" title="More"></i></a>
   </div>
 </header>
 
-<!-- Body with iFrame -->
 
-  <iframe src="search/index.html" title="iFrame Content"></iframe>
 
+
+<iframe src="search/index.html" 
+        style="width: 100%; height: 100vh; overflow: auto;" 
+        frameborder="0">
+</iframe>
 
 <!-- Footer -->
 <footer>
@@ -210,18 +276,64 @@
     <span>Category</span>
   </div>
   <div class="footer-item">
-    <a href="index.html"><i class="glyphicon glyphicon-search"></i></a>
+    <a href="#search"><i class="glyphicon glyphicon-search"></i></a>
     <span>Search</span>
   </div>
   <div class="footer-item">
-    <a href="#menu"><i class="glyphicon glyphicon-th"></i></a>
-    <span>Service</span>
+    <a href="javascript:void(0)" id="service-btn"><i class="glyphicon glyphicon-th"></i></a>
+    <span>Veta App</span>
   </div>
   <div class="footer-item">
     <a href="#profile"><i class="glyphicon glyphicon-user"></i></a>
     <span>Profile</span>
   </div>
 </footer>
+
+<!-- Service Popup Window -->
+<div class="popup" id="service-popup">
+  <div class="popup-content">
+    <span class="close-btn" id="close-popup-btn">&times;</span>
+    <h3>Service Details</h3>
+    <div class="card-container">
+      <div class="card">
+        <a href="index.html" target="_blank">
+          <img src="image/logo/logo.svg" alt="Logo 1" class="card-logo">
+          <div class="card-title">Veta</div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="calculator.html" target="_blank">
+          <img src="image/logo/calculator.svg" alt="Logo 2" class="card-logo">
+          <div class="card-title">Calculator</div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="https://your-link3.com" target="_blank">
+          <img src="image/logo/logo.svg" alt="Logo 3" class="card-logo">
+          <div class="card-title">Veta 3</div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="https://your-link4.com" target="_blank">
+          <img src="image/logo/logo.svg" alt="Logo 4" class="card-logo">
+          <div class="card-title">Veta 4</div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="https://your-link5.com" target="_blank">
+          <img src="image/logo/logo.svg" alt="Logo 5" class="card-logo">
+          <div class="card-title">Veta 5</div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="https://your-link6.com" target="_blank">
+          <img src="image/logo/logo.svg" alt="Logo 6" class="card-logo">
+          <div class="card-title">Veta 6</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Left Sidebar -->
 <div class="sidebar" id="left-sidebar">
@@ -274,6 +386,28 @@
 
   closeDotBtn.addEventListener('click', function() {
     rightSidebar.classList.remove('active');
+  });
+  
+    // Popup window
+  const serviceBtn = document.getElementById('service-btn');
+  const servicePopup = document.getElementById('service-popup');
+  const closePopupBtn = document.getElementById('close-popup-btn');
+
+  // Show popup when service button is clicked
+  serviceBtn.addEventListener('click', function() {
+    servicePopup.style.display = 'flex';
+  });
+
+  // Close popup when close button is clicked
+  closePopupBtn.addEventListener('click', function() {
+    servicePopup.style.display = 'none';
+  });
+
+  // Close popup when clicked outside the content area
+  window.addEventListener('click', function(event) {
+    if (event.target === servicePopup) {
+      servicePopup.style.display = 'none';
+    }
   });
 </script>
 
