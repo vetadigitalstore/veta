@@ -17,8 +17,8 @@ function fetchSearchResults() {
         { title: "Services", url: "services.html" },
         { title: "Contact Us", url: "contact.html" },
         { title: "All Calculator", url: "../calculator.html" },
-        { title: "Right Angle", url: "../calculator/right_angle/right_angle.html" },
-        { title: "Calculator", url: "../calculator/calculator/index.html" },
+        { title: "Right Angle", url: "../content/calculator/right_angle/right_angle.html" },
+        { title: "Calculator", url: "../content/calculator/calculator/index.html" },
     ];
 
     // ইনপুট অনুযায়ী পেজ ফিল্টার করা
