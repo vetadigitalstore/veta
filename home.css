@@ -1,0 +1,465 @@
+/* General Reset */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Header Styles */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 28px;
+}
+
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-left: 20px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 30px;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+
+
+.header-icons .notification,
+.header-icons .search {
+    font-size: 20px;
+    cursor: pointer;
+    gap: 20px;
+}
+
+.header-icons .three-dots {
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 30px;
+    
+}
+
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    background-color: #005580;
+    color: white;
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.left-sidebar {
+    left: 0;
+}
+
+.right-sidebar {
+    right: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid #555;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar ul li:hover {
+    background-color: #444;
+}
+
+.sidebar ul .icon {
+    font-size: 18px;
+}
+
+.close-btn {
+    font-size: 20px;
+    background: none;
+    border: none;
+    color: white;
+    align-self: flex-end;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+}
+
+.popup-content {
+    background: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+}
+
+.popup-content .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.update-form-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+/* প্রোফাইল লোগোর জন্য স্টাইল */
+#profileLogo {
+    width: 100px; /* ইচ্ছেমতো সাইজ পরিবর্তন করুন */
+    height: 100px; /* ইচ্ছেমতো সাইজ পরিবর্তন করুন */
+    object-fit: cover; /* লোগোটি উপযুক্ত আকারে কাটবে */
+    border-radius: 50%; /* লোগোটি গোলাকার হবে */
+}
+
+
+
+
+
+/* Default light mode styles */
+body {
+    background-color: #fff;
+    color: #000;
+    font-family: Arial, sans-serif;
+}
+
+/* Header and menu styles */
+.header, .sidebar {
+    background-color: #fff;
+}
+
+.header .title {
+    color: #000;
+}
+
+/* Sidebar menu items */
+.sidebar ul li {
+    color: #000;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Dark mode for header and menu */
+body.dark-mode .header, 
+body.dark-mode .sidebar {
+    background-color: #222;
+}
+
+/* Dark mode for header title */
+body.dark-mode .header .title {
+    color: #fff;
+}
+
+/* Dark mode for sidebar menu items */
+body.dark-mode .sidebar ul li {
+    color: #fff;
+}
+
+/* Dark mode for popups */
+body.dark-mode .popup-content {
+    background-color: #444; /* Dark background for popups */
+    color: #fff; /* White text */
+}
+
+/* Popup default styles */
+.popup-content {
+    background-color: #fff; /* Light background for popups */
+    color: #000; /* Black text */
+}
+
+/* Close button styles for popups */
+.popup-content .close-btn {
+    color: #000; /* Default close button color */
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Dark mode close button styles */
+body.dark-mode .popup-content .close-btn {
+    color: #fff; /* White close button color in dark mode */
+}
+
+/* Button styles for switching themes */
+.theme-toggle button {
+    background-color: #0066cc;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.theme-toggle button:hover {
+    background-color: #005bb5;
+}
+
+/* Close button styles for sidebar */
+.sidebar .close-btn {
+    color: #000; /* Default close button color */
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Dark mode close button styles for sidebar */
+body.dark-mode .sidebar .close-btn {
+    color: #fff; /* White close button color in dark mode */
+}
+
+/* Specific styles for left and right sidebar close button */
+.sidebar.left-sidebar .close-btn {
+    color: #000; /* Light mode color */
+}
+
+.sidebar.right-sidebar .close-btn {
+    color: #000; /* Light mode color */
+}
+
+/* Dark mode styles for left and right sidebar close buttons */
+body.dark-mode .sidebar.left-sidebar .close-btn {
+    color: #fff; /* Dark mode color */
+}
+
+body.dark-mode .sidebar.right-sidebar .close-btn {
+    color: #fff; /* Dark mode color */
+}
+
+
+
+
+
+#searchResults {
+    margin-top: 10px;
+    list-style-type: none;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    background-color: white;
+}
+
+#searchResults li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+#searchResults li:hover {
+    background-color: #f0f0f0;
+}
+
+/* Default Search Bar Style */
+#searchInput {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+    transition: all 0.3s ease; /* Smooth transition for theme change */
+}
+
+/* ডিফল্ট রেজাল্ট স্টাইল */
+#searchResults li {
+    color: #000; /* লাইট মোডে কালো রঙ */
+    background-color: #f0f0f0; /* লাইট মোডে হালকা পটভূমি */
+    padding: 5px;
+    margin: 3px 0;
+    border-radius: 5px;
+    list-style: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* হোভার অবস্থায় */
+#searchResults li:hover {
+    background-color: #ddd;
+    color: #333; /* টেক্সট রঙ আরও কনট্রাস্টেড */
+}
+
+/* ডার্ক মোড */
+body.dark-mode #searchResults li {
+    color: #fff; /* ডার্ক মোডে টেক্সট সাদা */
+    background-color: #333; /* ডার্ক মোডে পটভূমি গাঢ় */
+}
+
+/* ডার্ক মোডে হোভার */
+body.dark-mode #searchResults li:hover {
+    background-color: #444; /* গাঢ় গ্রে */
+    color: #fff; /* টেক্সট সাদা */
+}
+
+/* Notification Link Style */
+.notification-link {
+    text-decoration: none;  /* Default: Remove underline */
+    color: #007bff;         /* Text color */
+    font-weight: bold;      /* Optional: Makes the link text bold */
+    transition: color 0.3s ease; /* Smooth color change on hover */
+}
+
+.notification-link:hover {
+    color: #0056b3;         /* Darker color on hover */
+    text-decoration: underline; /* Underline on hover */
+}
+
+ 
+
+
+/* Footer Header Styles */
+.bottom-header {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff; /* লাইট মোড ব্যাকগ্রাউন্ড */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.icon-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.icon-item {
+  text-decoration: none;
+  color: #000; /* লাইট মোডে কালো আইকন রঙ */
+  font-size: 24px;
+  transition: color 0.3s ease;
+}
+
+.icon-item:hover {
+  color: #007BFF; /* হোভার করলে নীল রঙ */
+}
+
+/* Dark Mode Styles */
+body.dark-mode .bottom-header {
+  background-color: #333; /* ডার্ক মোড ব্যাকগ্রাউন্ড */
+  box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .icon-item {
+  color: #fff; /* ডার্ক মোডে সাদা আইকন রঙ */
+}
+
+body.dark-mode .icon-item:hover {
+  color: #007BFF; /* হোভার করলে নীল রঙ */
+}
+
+
+
+    body.dark-mode {
+        background-color: #000;
+        color: #fff;
+    }
+
+    body.light-mode {
+        background-color: #fff;
+        color: #000;
+    }
+
+
+a {
+    text-decoration: none; /* আন্ডারলাইন সরাবে */
+}
+
+a:hover {
+    text-decoration: none; /* হোভারের সময়ও আন্ডারলাইন সরিয়ে রাখবে */
+}
+.icon-link {
+    text-decoration: none; /* আন্ডারলাইন সরানোর জন্য */
+    color: black; /* টেক্সট কালার পরিবর্তন করার জন্য */
+}
+
+.icon-link:hover {
+    color: #007BFF; /* হোভারে টেক্সট কালার পরিবর্তন হবে */
+}
+
+.icon-link .icon {
+    margin-right: 8px; /* আইকন এবং টেক্সটের মধ্যে 8px গ্যাপ */
+    display: inline-block; /* ইনলাইন আইকন উপাদান ঠিক রাখতে */
+}
+
+.popup-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.modal-btn {
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.modal-btn:hover {
+    background: #0056b3;
+}
