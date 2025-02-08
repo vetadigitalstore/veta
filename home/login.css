@@ -1,0 +1,118 @@
+/* General popup styling */
+.popup {
+    display: none; /* Default অবস্থায় লুকানো থাকবে */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Transparent কালো ব্যাকগ্রাউন্ড */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Popup content box */
+.popup-content {
+    background: #fff;
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Popup animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Popup title */
+.popup-content h2 {
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* Form inputs */
+.popup-content input[type="email"],
+.popup-content input[type="password"],
+.popup-content input[type="text"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.popup-content input:focus {
+    border-color: #3f51b5; /* Blue highlight */
+    outline: none;
+}
+
+/* Buttons */
+.modal-btn {
+    background-color: #3f51b5; /* Primary button color */
+    color: #fff;
+    padding: 12px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+}
+
+.modal-btn:hover {
+    background-color: #303f9f; /* Darker blue on hover */
+}
+
+/* Additional buttons */
+.additional-buttons button {
+    background: none;
+    color: #3f51b5;
+    border: none;
+    font-size: 0.9rem;
+    margin: 5px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.additional-buttons button:hover {
+    color: #303f9f;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .popup-content {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .popup-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .popup-content input[type="email"],
+    .popup-content input[type="password"],
+    .popup-content input[type="text"] {
+        font-size: 0.9rem;
+    }
+
+    .modal-btn {
+        font-size: 0.9rem;
+    }
+}
