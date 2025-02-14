@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="userprofile.css">
+</head>
+<body>
+    <div class="profile-container">
+        <!-- Close Icon -->
+        <span class="close-icon" onclick="goBack()">&#10006;</span> 
+
+        <h2>User Profile</h2>
+        <p><strong>Name:</strong> <span id="profile-name"></span></p>
+        <p><strong>Email:</strong> <span id="profile-email"></span></p>
+        <p><strong>Mobile:</strong> <span id="profile-mobile"></span></p>
+        <p><strong>Date of Birth:</strong> <span id="profile-dob"></span></p>
+        <p><strong>Gender:</strong> <span id="profile-gender"></span></p>
+        <p><strong>User ID:</strong> <span id="profile-userId"></span></p>
+        <p><strong>UID:</strong> <span id="profile-uid"></span></p>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+        // Load User Data from Local Storage
+        const userData = JSON.parse(localStorage.getItem("userData"));
+
+        if (userData) {
+            document.getElementById("profile-name").textContent = userData.fullname;
+            document.getElementById("profile-email").textContent = userData.email;
+            document.getElementById("profile-mobile").textContent = userData.mobile;
+            document.getElementById("profile-dob").textContent = userData.dob;
+            document.getElementById("profile-gender").textContent = userData.gender;
+            document.getElementById("profile-userId").textContent = userData.userId;
+            document.getElementById("profile-uid").textContent = userData.uid;
+        } else {
+            alert("No user data found! Redirecting to login...");
+            window.location.href = "login.html";
+        }
+
+        // Logout Function
+        function logout() {
+            localStorage.removeItem("userData");
+            window.location.href = "login.html";
+        }
+
+        // Go Back Function
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
+    	<script src="script/login.js" type="module"></script>
+</head>
+<body>
+    <div class="login-container">
+    	
+    <!-- Close Icon -->
+        <span class="close-icon" onclick="goBack()">&#10006;</span> 
+    
+    
+        <div class="logo">
+            <img src="image/logo/logo.svg" alt="Logo">
+        </div>
+
+        <h2>Login</h2>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">Email</label>
+                <input type="text" id="username" placeholder="Email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter Password" required>
+            </div>
+
+            <button type="submit">Login</button>
+            <button type="button" class="register-btn" onclick="goToRegister()">Register</button>
+
+              <p class="forgot-password" onclick="forgotPassword()">Forgot Password?</p>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

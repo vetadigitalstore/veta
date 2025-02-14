@@ -1,0 +1,138 @@
+/* বেসিক স্টাইল */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #74ebd5, #9face6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 10px;
+}
+/* Close Icon (Right Side) */
+.close-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px; /* ডান পাশে সরানো */
+    font-size: 22px;
+    color: #ff0000;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 10; /* Ensure it's above other content */
+}
+
+.close-icon:hover {
+    color: #cc0000;
+    transform: scale(1.1);
+}
+
+/* কন্টেইনার */
+.login-container {
+    position: relative; /* Close আইকনকে ভেতরে আনতে এই লাইন */
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+}
+
+/* লোগো */
+.logo img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #6a11cb;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ইনপুট ফিল্ড */
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #74ebd5;
+    outline: none;
+}
+
+/* বাটন */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #6a11cb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #2575fc;
+}
+
+/* পাসওয়ার্ড স্ট্রেংথ ইন্ডিকেটর */
+#password-strength {
+    font-size: 12px;
+    color: #d32f2f;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* সিকিউরিটি কোড */
+#generated-code {
+    font-weight: bold;
+    background-color: #e3f2fd;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.forgot-password {
+    margin-top: 10px; /* 5 পিক্সেল নিচে শো করার জন্য */
+    color: #388e3c;  /* সবুজ রঙ */
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none; /* আন্ডারলাইন বাদ দেওয়া */
+}
+
+.forgot-password:hover {
+    color: #6a11cb; /* হোভার করলে রঙ পরিবর্তন (নীল) */
+}
+
+@media only screen and (max-width: 768px) {
+    .google-translate {
+        max-height: 300px; /* উচ্চতা সীমাবদ্ধ */
+        overflow-y: auto; /* স্ক্রল করতে দিবে */
+    }
+}
