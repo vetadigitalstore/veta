@@ -180,94 +180,29 @@
     <div class="sidebar right-sidebar" id="rightMenu">
         <button class="close-btn" onclick="closeRightMenu()">&#10005;</button>
         <ul>
-            <li onclick="openProfilePopup()"><span class="icon"><i class="fas fa-user"></i></span> Profile</li>
+        	     <li>
+    <a href="home/user/profile.html" class="icon-link">
+        <span class="icon"><i class="fas fa-user"></i></span> User Profile 
+    </a>
+</li>
+           
             <li onclick="openSettingsPopup()"><span class="icon"><i class="fas fa-cogs"></i></span> Settings</li>
             <li><span class="icon"><i class="fas fa-bell"></i></span> Notifications</li>
-            <li onclick="openLoginPopup()"><span class="icon"><i class="fa fa-sign-in"></i></span> Login</li>
-            <li onclick="logoutUser()"><span class="icon"><i class="fas fa-sign-out-alt"></i></span> Logout</li>
+            
+            
+                <li>
+    <a href="home/user/login.html" class="icon-link">
+        <span class="icon"><i class="fa fa-sign-in"></i></span> Login 
+    </a>
+</li>
+
+<li onclick="logoutUser()"><span class="icon"><i class="fas fa-sign-out-alt"></i></span> Logout</li>
         </ul>
     </div>
+
     
     
-        <!-- Login Popup -->
-<div class="popup" id="loginPopup">
-    <div class="popup-content">
         
-        <h2>Login</h2>
-         <form id="loginForm">
-                <input type="email" id="loginEmail" name="loginEmail" placeholder="Email ID" required>
-                <input type="password" id="loginPassword" name="loginPassword" placeholder="Password" required>
-                <button type="submit" class="modal-btn">Login</button>
-            </form>
-        
-        <!-- Additional Buttons -->
-        <div class="additional-buttons">
-            <button class="forgot-btn" onclick="openForgotPasswordPopup()">Forgot Password</button>
-            <button class="register-btn" onclick="openRegistrationPopup()">Register</button>
-        </div>
-    </div>
-</div>
-
-<!-- Forgot Password Popup -->
-<div class="popup" id="forgotPasswordPopup">
-    <div class="popup-content">
-        <h2>Forgot Password</h2>
-        <form id="forgotPasswordForm">
-            <input type="email" id="forgotEmail" name="forgotEmail" placeholder="Enter your email ID" required>
-            <button type="submit" class="modal-btn">Reset Password</button>
-        </form>
-
-        <!-- নতুন বাটন -->
-        <button class="modal-btn" onclick="openLoginFromForgot()">Login</button>
-    </div>
-</div>
-
-<!-- Registration Popup -->
-<div class="popup" id="registrationPopup">
-    <div class="popup-content">
-        <h2>Register</h2>
-        <h4>Verify, By Clicking The Link Sent To The Email</h4>
-        <form id="signUpForm">
-            <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
-            <input type="email" id="email" name="email" placeholder="Email ID" required>
-            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" required>
-            <input type="password" id="newPassword" name="newPassword" placeholder="Password" required>
-            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
-            <button type="submit" class="modal-btn">Submit</button>
-        </form>
-
-        <!-- Login & Forgot Password Buttons -->
-        <div class="popup-buttons">
-            <button class="modal-btn" onclick="openLoginFromForgot()">Login</button>
-            <button class="modal-btn" onclick="openForgotPasswordPopup()">Forgot Password</button>
-        </div>
-    </div>
-</div>
-
-
-    <!-- Profile Popup -->
-<div class="popup" id="profilePopup">
-    <div class="popup-content">
-        <span class="close-btn" onclick="closeProfilePopup()">&#10005;</span>
-        <h1><p class="fullNameDisplay" id="fullNameDisplay">VETA</p></h1>
-        <div class="logo-container" id="logoContainer">
-            <img src="image/logo.svg" alt="Profile Logo" id="profileLogo">
-        </div>
-         <h2> <p id="fullNameDisplay"> Loading...</p></h2>
-        <div class="user-info">
-            <p id="userUIDDisplay">UID: Loading...</p>
-            <p id="userEmail">Email: Loading...</p>
-            <p id="phoneNumberDisplay">Phone: Loading...</p>
-        </div>
-        <button class="update-form-btn" onclick="openUpdateForm()">Open Update Form</button>
-        
-        <div id="ledgerData" style="display: none;">
-    <h2>Ledger Data</h2>
-    <p>এই ডাটা শুধুমাত্র লগইন অবস্থায় দেখা যাবে।</p>
-</div>
-
-    </div>
-</div>
 
     <!-- Settings Popup for Dark/Light Mode -->
     <div class="popup" id="settingsPopup">
@@ -357,77 +292,20 @@ function toggleTheme() {
     isDarkMode = !isDarkMode;
 }
 
+ // Logout function
+        function logoutUser() {
+            localStorage.removeItem('userToken');
+            sessionStorage.removeItem('userToken');
+            window.location.href = 'home/user/profile.html';
+        }
+        
+
+</script>
 
 
 
 
 
-// লগআউট ফাংশন
-function logoutUser() {
-    // লোকাল স্টোরেজ বা সেশন ডেটা মুছে ফেলা
-    localStorage.removeItem("userToken"); // লগইন টোকেন মুছে ফেলা
-    localStorage.removeItem("userData"); // ইউজারের ডাটা মুছে ফেলা
-
-    // প্রোফাইল এবং অন্যান্য ইউজার ডাটা সাফ করা
-    document.getElementById("fullNameDisplay").textContent = "Loading...";
-    document.getElementById("userUIDDisplay").textContent = "UID: Loading...";
-    document.getElementById("userEmail").textContent = "Email: Loading...";
-    document.getElementById("phoneNumberDisplay").textContent = "Phone: Loading...";
-
-    // লেজারের ডাটা লুকানো
-    document.getElementById("ledgerData").style.display = "none";
-
-    // লগইন পপআপ দেখানো
-    openLoginPopup();
-
-    // সাফল্যের বার্তা প্রদর্শন
-    alert("You have been logged out successfully!");
-}
-
-// প্রোফাইল ডাটা লোড ফাংশন
-function loadProfileData() {
-    const userToken = localStorage.getItem("userToken");
-    if (userToken) {
-        // ইউজার টোকেন থাকলে প্রোফাইল ডাটা দেখাও
-        const userData = JSON.parse(localStorage.getItem("userData"));
-        document.getElementById("fullNameDisplay").textContent = userData.fullName || "N/A";
-        document.getElementById("userUIDDisplay").textContent = `UID: ${userData.uid || "N/A"}`;
-        document.getElementById("userEmail").textContent = `Email: ${userData.email || "N/A"}`;
-        document.getElementById("phoneNumberDisplay").textContent = `Phone: ${userData.phone || "N/A"}`;
-    } else {
-        // টোকেন না থাকলে পপআপ দেখাও এবং ডিফল্ট ডাটা সেট করো
-        document.getElementById("fullNameDisplay").textContent = "Loading...";
-        document.getElementById("userUIDDisplay").textContent = "UID: Loading...";
-        document.getElementById("userEmail").textContent = "Email: Loading...";
-        document.getElementById("phoneNumberDisplay").textContent = "Phone: Loading...";
-        openLoginPopup(); // পপআপ চালু করো
-    }
-}
-
-// পপআপ চালু করার ফাংশন
-function openLoginPopup() {
-    const popup = document.getElementById("loginPopup");
-    if (popup) {
-        popup.style.display = "block"; // পপআপ দেখাও
-    }
-}
-
-// পপআপ বন্ধ করার ফাংশন
-function closeLoginPopup() {
-    const popup = document.getElementById("loginPopup");
-    if (popup) {
-        popup.style.display = "none"; // পপআপ বন্ধ করো
-    }
-}
-
-// পেজ লোড হলে প্রোফাইল ডাটা চেক করো
-window.onload = function () {
-    loadProfileData();
-};
-    
-    
-   
-    </script>
 </body>
 </html>
 
