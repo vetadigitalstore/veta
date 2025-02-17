@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veta Post</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2></h2>
+
+<div class="search-container">
+    <input type="text" id="searchInput" placeholder="enter VETA search..." class="search-input">
+    <button id="searchButton" class="search-button">Search</button>
+</div>
+
+
+    <div id="fileList"></div>
+
+    <!-- পপআপ উইন্ডো (Modal) -->
+    <div id="postModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDjiNq5wrjSXUPnxCwvKohNK4kp-PLZjCU",
+            authDomain: "veta-a21a4.firebaseapp.com",
+            databaseURL: "https://veta-a21a4-default-rtdb.firebaseio.com",
+            projectId: "veta-a21a4",
+            storageBucket: "veta-a21a4.appspot.com",
+            messagingSenderId: "894331542860",
+            appId: "1:894331542860:web:29faa849a6232be449c3e9",
+            measurementId: "G-XDY6292KME"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const auth = getAuth();
+
+        // Load files from Firebase Database
+        const fileList = document.getElementById("fileList");
+        const modal = document.getElementById("postModal");
+        const modalBody = document.getElementById("modalBody");
+        const closeModal = document.querySelector(".close");
+
+        onValue(ref(db, "files/"), (snapshot) => {
+            fileList.innerHTML = "";
+            let posts = [];
+
+            snapshot.forEach(childSnapshot => {
+                posts.unshift(childSnapshot.val()); // নতুন পোস্ট সবার উপরে আনতে unshift ব্যবহার করা হয়েছে
+            });
+
+            posts.forEach(data => {
+                const fileDiv = document.createElement("div");
+                fileDiv.classList.add("file-container");
+
+                // Google Drive Image Fix (Direct Link)
+                let imageURL = data.imageURL.replace("view?usp=sharing", "uc?export=download");
+
+                // **Title এর জন্য Unique URL তৈরি করা হচ্ছে**
+                let postURL = `https://yourwebsite.com/post/${data.id}`;  
+
+                // Create file block
+                fileDiv.innerHTML = `
+                    <div class="post-card">
+                        <img src="${imageURL}" alt="Image" class="post-image">
+                        <h3><a href="${postURL}" target="_blank">${data.title}</a></h3>
+                    </div>
+                `;
+
+                fileDiv.onclick = () => {
+                    modal.style.display = "block";
+                    modalBody.innerHTML = `
+                        <h2><a href="${postURL}" target="_blank">${data.title}</a></h2>
+                        <img src="${imageURL}" alt="Image" class="modal-image">
+                        <p class="description">${data.description}</p>
+                        <button class="download-btn" data-link="${data.downloadLink}">Download Now</button>
+                    `;
+
+                    // ডাউনলোড বাটন পরিচালনা
+                    const downloadBtn = modalBody.querySelector(".download-btn");
+                    onAuthStateChanged(auth, (user) => {
+                        if (!user) {
+                            downloadBtn.disabled = true;
+                            downloadBtn.style.background = "gray";
+                            downloadBtn.innerText = "Login to Download";
+                        } else {
+                            downloadBtn.disabled = false;
+                            downloadBtn.style.background = "blue";
+                            downloadBtn.innerText = "Download Now";
+                            downloadBtn.onclick = () => window.open(downloadBtn.getAttribute("data-link"), "_blank");
+                        }
+                    });
+                };
+
+                fileList.appendChild(fileDiv);
+            });
+        });
+
+        // Close Modal
+        closeModal.onclick = () => {
+            modal.style.display = "none";
+        };
+
+        window.onclick = (event) => {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+        
+        
+       document.getElementById("searchButton").onclick = function () {
+    const searchValue = document.getElementById("searchInput").value.toLowerCase();
+    const allPosts = document.querySelectorAll(".file-container");
+
+    let found = false; //      
+
+    allPosts.forEach(post => {
+        const title = post.querySelector("h3 a").innerText.toLowerCase();
+        
+        if (title.includes(searchValue) && searchValue !== "") {
+            post.style.display = "block"; //   
+            found = true;
+        } else {
+            post.style.display = "none"; //    
+        }
+    });
+
+    //    ,    
+    if (!found) {
+        allPosts.forEach(post => post.style.display = "block");
+    }
+};
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        h2 {
+            margin-top: 50px;
+            font-size: 28px;
+            color: #333;
+        }
+        
+.search-container {
+    width: 85%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column; /*      */
+    align-items: center; /*      */
+}
+
+.search-input {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.search-button {
+    width: 100px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px; /*       */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-button:hover {
+    background: #0056b3;
+}
+
+
+        #fileList {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3mm;
+            justify-content: center;
+            margin-top: 20px;
+            padding: 0 20px;
+        }
+        .file-container {
+            border: 1px solid #ddd;
+            padding: 5mm;
+            border-radius: 12px;
+            box-shadow: 4px 4px 15px rgba(0,0,0,0.1);
+            background: white;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .file-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 6px 6px 20px rgba(0,0,0,0.15);
+        }
+        .post-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .post-card h3 a {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .post-card h3 a:hover {
+            text-decoration: underline;
+        }
+
+        /* Modal CSS */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            margin-top: 50px;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            margin: 10% auto;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+        }
+        .modal-content h2 a {
+            color: #333;
+            text-decoration: none;
+        }
+        .modal-content h2 a:hover {
+            text-decoration: underline;
+        }
+        .modal-image {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .description {
+            font-size: 16px;
+            color: #555;
+            text-align: justify;
+            padding: 10px;
+        }
+        .download-btn {
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+    </style>
+
+</body>
+</html>

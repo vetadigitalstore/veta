@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script> 
+</head>
+<body>
+
+    <!-- Back Button -->
+    <div class="back-container">
+        <i class="fas fa-arrow-left back-icon" onclick="goBack()"></i>
+    </div>
+
+    <h2>Upload Your File</h2>
+    <form id="uploadForm">
+        <input type="text" id="title" placeholder="Enter title" required>
+        <textarea id="description" placeholder="Enter description" required></textarea>
+        <input type="text" id="imageURL" placeholder="Enter direct image URL" required>
+        <input type="text" id="downloadLink" placeholder="Enter download link" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+        import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
+
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDjiNq5wrjSXUPnxCwvKohNK4kp-PLZjCU",
+            authDomain: "veta-a21a4.firebaseapp.com",
+            databaseURL: "https://veta-a21a4-default-rtdb.firebaseio.com",
+            projectId: "veta-a21a4",
+            storageBucket: "veta-a21a4.appspot.com",
+            messagingSenderId: "894331542860",
+            appId: "1:894331542860:web:29faa849a6232be449c3e9",
+            measurementId: "G-XDY6292KME"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // Form Submit Event
+        document.getElementById("uploadForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const title = document.getElementById("title").value.trim();
+            const description = document.getElementById("description").value.trim();
+            const imageURL = document.getElementById("imageURL").value.trim();
+            const downloadLink = document.getElementById("downloadLink").value.trim();
+
+            // Check if fields are empty
+            if (!title || !description || !imageURL || !downloadLink) {
+                alert("Please fill in all the details correctly!");
+                return;
+            }
+
+            // Save Data to Firebase
+            push(ref(db, "files/"), { title, description, imageURL, downloadLink })
+                .then(() => {
+                    alert("✅ File uploaded successfully!");
+                    document.getElementById("uploadForm").reset();
+                })
+                .catch(error => {
+                    alert("❌ Error: " + error.message);
+                });
+        });
+    </script>
+
+    <script>
+        // Go Back Function
+        function goBack() {
+            if (document.referrer) {
+                window.history.back(); // Go to previous page
+            } else {
+                window.location.href = "index.html"; // If no history, go to homepage
+            }
+        }
+    </script>
+
+    <style>
+        /* Page Background Design */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #74ebd5, #acb6e5);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        /* Back Button Container */
+        .back-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        /* Back Icon Design */
+        .back-icon {
+            font-size: 24px;
+            color: #333;
+            cursor: pointer;
+            transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+        }
+
+        .back-icon:hover {
+            color: #ff5733;
+            transform: scale(1.1);
+        }
+
+        /* Heading Design */
+        h2 {
+            color: white;
+            font-size: 28px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Form Design */
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 85%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Input & Textarea Design */
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            outline: none;
+            transition: border 0.3s ease-in-out;
+        }
+
+        /* Focus Effect on Input & Textarea */
+        input:focus, textarea:focus {
+            border-color: #74ebd5;
+        }
+
+        /* Upload Button Design */
+        button {
+            background: #007bff;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            transition: background 0.3s ease-in-out;
+        }
+
+        /* Button Hover Effect */
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+
+</body>
+</html>
